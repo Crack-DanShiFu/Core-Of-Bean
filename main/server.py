@@ -29,12 +29,18 @@ def get_county_list():
 
 
 def get_info_by_city(city):
+    columnsNmae = ['id', 'city', 'countyName', 'yares2017', 'yares2016', 'yares2015', 'yares2014', 'yares2013',
+                   'yares2012', 'yares2011', 'yares2010', 'yares2009', 'yares2008', 'yares2007', 'yares2006',
+                   'yares2005', 'yares2004', 'yares2003', 'yares2002', 'yares2001', 'yares2000']
+
     sql = "select * from planting_area where city ='{}' ;".format(city)
     sql_lists = db.session.execute(sql)
-    entity_l = {'result': {city: []}}
+    entity_l = []
+
     for s in sql_lists:
-        entity_l['result'][city].append(s[2:])
-    return json.dumps(entity_l, ensure_ascii=False)
+        entity_l.append(s[0:])
+    result = [dict(zip(columnsNmae, e)) for e in entity_l]
+    return json.dumps(result, ensure_ascii=False)
 
 
 def get_all_info():
@@ -52,10 +58,24 @@ def get_all_info():
 
 
 def get_info_by_county(county):
-    sql = "select * from planting_area where countyName ='{}' ;".format(county)
+    columnsNmae = ['id', 'city', 'countyName', 'yares2017', 'yares2016', 'yares2015', 'yares2014', 'yares2013',
+                   'yares2012', 'yares2011', 'yares2010', 'yares2009', 'yares2008', 'yares2007', 'yares2006',
+                   'yares2005', 'yares2004', 'yares2003', 'yares2002', 'yares2001', 'yares2000']
+
+    co = str(county).split('%')
+    sql = "select * from planting_area where city='{}' and countyName ='{}' ;".format(co[0], co[1])
     sql_lists = db.session.execute(sql)
-    entity_l = {'result': []}
+    entity_l = []
     for s in sql_lists:
-        entity_l['result'].append(s[2:])
-        entity_l['city'] = s[1]
+        entity_l.append(s[0:])
+    result = [dict(zip(columnsNmae, e)) for e in entity_l]
+    return json.dumps(result, ensure_ascii=False)
+
+
+def get_provinces_info():
+    sql = "select years,areas,production from  provinces_info;"
+    sql_lists = db.session.execute(sql)
+    entity_l = []
+    for s in sql_lists:
+        entity_l.append(s[0:])
     return json.dumps(entity_l, ensure_ascii=False)

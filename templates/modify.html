@@ -1,0 +1,36 @@
+{% extends 'nav.html' %}
+{% block title %}
+    数据详情
+{% endblock %}
+{% block main %}
+    <link rel="stylesheet" href="/static/css/modify.css"/>
+
+    <div class=" container-fluid">
+        <form action="submit" method="post">
+            <table class="table table-bordered table-striped">
+                <caption>修改</caption>
+                <thead>
+                <thead>
+                <tr>
+                    <th>key</th>
+                    <th>value</th>
+                </tr>
+                </thead>
+                </thead>
+                <tbody>
+                {% for d in data[0] %}
+                    <tr>
+                        <th>{{ d.replace('yares','') }}</th>
+                        <th>
+                            <input type="text" class="form-control" value="{{ data[0][d] }}">
+                        </th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">提交修改</button>
+        </form>
+    </div>
+    <div style="margin-bottom: 500px">
+    </div>
+{% endblock %}

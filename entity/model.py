@@ -56,3 +56,12 @@ class PdfYearsRecord(db.Model):
     yarea2002 = db.Column(db.Integer)
     yarea2001 = db.Column(db.Integer)
     yarea2000 = db.Column(db.Integer)
+
+
+class ProvincesInfo(db.Model):
+    __tableName__ = 'provinces_info'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    years = db.Column(db.Integer)
+    # Provinces = db.Column(db.String(20))
+    areas = db.Column(db.FLOAT)
+    production = db.Column(db.FLOAT)
