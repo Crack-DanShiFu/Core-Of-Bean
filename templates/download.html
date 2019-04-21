@@ -3,6 +3,28 @@
     download
 {% endblock %}
 {% block main %}
+    <script type="text/javascript" src="/static/js/download.js"></script>
+    <link rel="stylesheet" href="/static/css/download.css">
+    <div class="container container-fluid">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <select name="city-section" class="input-small form-control">
+                    <option>选择一个城市</option>
+                    {% for d in data %}
+                        <option>{{ d[-1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <select name="years-section" class="input-small form-control">
+                    <option>选择一个年份</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <button type="button" class="btn btn-primary download_button">下载文件</button>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 

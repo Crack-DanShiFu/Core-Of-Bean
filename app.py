@@ -1,7 +1,7 @@
 from flask import Flask
+
 import config
 from exts import db
-from entity import model
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -13,6 +13,10 @@ with app.app_context():
 from main import main
 
 app.register_blueprint(main, url_prefix='/')
+
+from download import download
+
+app.register_blueprint(download, url_prefix='/download')
 
 if __name__ == '__main__':
     app.run()

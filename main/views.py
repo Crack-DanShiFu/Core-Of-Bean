@@ -19,12 +19,6 @@ def modify_info(city):
     data = get_info_by_county(city)
     return render_template('modify.html', data=json.loads(data))
 
-# download
-@main.route('/download/')
-def download_page():
-    return render_template('download.html')
-
-
 
 @main.route('/modify/<city>/submit')
 def modify_info_submit(city):
